@@ -14,7 +14,7 @@ import java.net.URL
 class MainActivity : AppCompatActivity() {
 
     private val baseUrl = "https://api.themoviedb.org/3"
-    private val yourKey = ""
+    private val yourKey = "55957fcf3ba81b137f8fc01ac5a31fb5"
 
     private lateinit var moviesAdapter: MoviesAdapter
     private lateinit var recyclerView: RecyclerView
