@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -34,10 +33,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchMovies() {
-        val jsonString =
-            URL("$baseUrl/movie/now_playing?language=en-US&page=undefined&api_key=$yourKey").readText()
-        val jsonObject = JsonParser.parseString(jsonString).asJsonObject
-        moviesAdapter.items = jsonObject["results"] as JsonArray
-        moviesAdapter.notifyDataSetChanged()
+    //    val jsonString =
+     //       URL("$baseUrl/movie/now_playing?language=en-US&page=undefined&api_key=$yourKey").readText()
+    //    val jsonObject = JsonParser.parseString(jsonString).asJsonObject
+    //    moviesAdapter.items = jsonObject["results"] as JsonArray
+     //   moviesAdapter.notifyDataSetChanged()
     }
 }
