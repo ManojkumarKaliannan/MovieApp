@@ -4,4 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_playing">Playing Now</string>
+    <string name="title_popular">Most Popular</string>
+
+    <string name="no_internet">No Internet Connection</string>
 </resources>

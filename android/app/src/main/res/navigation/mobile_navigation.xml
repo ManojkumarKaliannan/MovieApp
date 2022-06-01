@@ -7,19 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.backbase.assignment.ui.ui.home.HomeFragment"
+        android:name="com.backbase.assignment.ui.ui.dashboard.playingnow.PlayingNowFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_playing_now" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.backbase.assignment.ui.ui.dashboard.DashboardFragment"
+        android:name="com.backbase.assignment.ui.ui.dashboard.popular.MostPopularFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_most_popular" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.backbase.assignment.ui.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
