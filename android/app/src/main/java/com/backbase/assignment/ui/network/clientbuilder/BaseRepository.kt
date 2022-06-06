@@ -13,9 +13,9 @@ import java.io.IOException
 
 
 open class BaseRepository {
-    fun <T> getCallback(responseData: MutableLiveData<Resource<BaseResponse<T>>>): Callback<BaseResponse<T>> {
-        return object : Callback<BaseResponse<T>> {
-            override fun onFailure(call: Call<BaseResponse<T>>, t: Throwable) {
+    fun <T> getCallback(responseData: MutableLiveData<Resource<T>>): Callback<T> {
+        return object : Callback<T> {
+            override fun onFailure(call: Call<T>, t: Throwable) {
                 if (t is IOException)
                     responseData.value = Resource.failure("Server time out", null)
                 else
@@ -23,14 +23,14 @@ open class BaseRepository {
             }
 
             override fun onResponse(
-                call: Call<BaseResponse<T>>,
-                response: Response<BaseResponse<T>>
+                call: Call<T>,
+                response: Response<T>
             ) {
                 if (response.isSuccessful && response.body() != null) {
                     responseData.value = Resource.success(response.body()!!)
                 } else {
                     val errorResponse = getErrorResponse<T>(response.errorBody()!!)
-                    responseData.value = Resource.error(response.code().toString(), errorResponse)
+                    responseData.value = Resource.error(errorResponse.message, errorResponse.data)
                 }
             }
         }

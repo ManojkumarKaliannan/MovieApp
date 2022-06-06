@@ -63,6 +63,9 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
     implementation "org.koin:koin-androidx-ext:2.0.1"
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
     // kotlin corountines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'

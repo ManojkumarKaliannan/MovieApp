@@ -1,7 +1,9 @@
 package com.backbase.assignment.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -11,8 +13,7 @@ class BaseRecyclerViewAdapter<T, V : ViewDataBinding>   (@LayoutRes
                                                          private val layoutResourceId: Int,
                                                          private val bindVariableId: Int,
                                                          private val items: MutableList<T>,
-                                                         private var dataVariables: Map<Int,Any>?,
-                                                         private val onDataBindCallback: OnDataBindCallback<V>
+                                                         private val onDataBindCallback: OnDataBindCallback<V>?
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder<V>>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<V> {
@@ -20,6 +21,7 @@ class BaseRecyclerViewAdapter<T, V : ViewDataBinding>   (@LayoutRes
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<V>, position: Int) {
+        setFadeAnimationOnScroll(holder.itemView)
         holder.viewDataBinding.setVariable(bindVariableId, getItem(position))
         holder.viewDataBinding.executePendingBindings()
     }
@@ -43,5 +45,10 @@ class BaseRecyclerViewAdapter<T, V : ViewDataBinding>   (@LayoutRes
         items.clear()
     }
 
+    private fun setFadeAnimationOnScroll(view: View) {
+        val anim = AlphaAnimation(0.0f, 1.0f)
+        anim.duration = 500
+        view.startAnimation(anim)
+    }
 
 }

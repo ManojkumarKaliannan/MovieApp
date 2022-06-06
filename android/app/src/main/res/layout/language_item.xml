@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   >
+
+    <data>
+    <variable
+        name="languageModel"
+        type="com.backbase.assignment.ui.data.remote.moviedetail.SpokenLanguage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAppGray"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{languageModel.english_name}"
+            android:id="@+id/hours_text"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/ItemTextAppearance"
+            android:padding="5dp"
+            android:layout_marginEnd="5dp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ic_outline_rectangle_border"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

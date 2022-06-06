@@ -4,8 +4,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_playing">Playing Now</string>
+    <string name="title_playing">Playing now</string>
     <string name="title_popular">Most Popular</string>
-
+    <string name="see_more">See more</string>
     <string name="no_internet">No Internet Connection</string>
+    <string name="released_on">Released on</string>
+    <string name="lasts">Lasts</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

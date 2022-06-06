@@ -9,7 +9,8 @@ class MovieBoxApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val moduleList = listOf(KoinCoreModule().viewModelModule,KoinCoreModule().networkModule)
+        val moduleList = listOf(KoinCoreModule().networkModule,
+            KoinCoreModule().apiModule,KoinCoreModule().viewModelModule)
         startKoin{
             androidContext(this@MovieBoxApplication)
             modules(moduleList)

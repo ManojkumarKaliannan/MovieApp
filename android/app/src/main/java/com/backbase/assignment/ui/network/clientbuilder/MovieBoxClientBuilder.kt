@@ -5,6 +5,7 @@ import com.backbase.assignment.BuildConfig
 import com.backbase.assignment.ui.utils.Singleton.CONNECT_TIMEOUT
 import com.backbase.assignment.ui.utils.Singleton.READ_TIMEOUT
 import com.backbase.assignment.ui.utils.Singleton.WRITE_TIMEOUT
+import com.backbase.assignment.ui.utils.Singleton.baseUrl
 import com.google.gson.GsonBuilder
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.KoinComponent
@@ -19,7 +20,6 @@ class MovieBoxClientBuilder(private val interceptor: ApiInterceptor) : KoinCompo
     fun getRetrofit()= retrofit
 
     private val httpLoggingInterceptor = HttpLoggingInterceptor()
-    private val baseUrl = "http://motor.yenjoy.in/"
     private var gson = GsonBuilder()
         .setLenient()
         .create()

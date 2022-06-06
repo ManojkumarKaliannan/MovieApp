@@ -58,10 +58,14 @@ abstract class BaseFragment<T : ViewDataBinding, out V : BaseViewModel<*>> : Fra
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        mRootView = viewDataBinding!!.root
-        mRootViewGrp = container
-        return mRootView
+        return if (viewDataBinding?.root == null) {
+            viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+            mRootView = viewDataBinding!!.root
+            mRootViewGrp = container
+            mRootView
+        } else {
+            viewDataBinding?.root
+        }
     }
 
 
