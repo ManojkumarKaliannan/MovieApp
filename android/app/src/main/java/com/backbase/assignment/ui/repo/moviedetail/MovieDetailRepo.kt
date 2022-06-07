@@ -1,8 +1,6 @@
 package com.backbase.assignment.ui.repo.moviedetail
-
 import androidx.lifecycle.MutableLiveData
 import com.backbase.assignment.ui.data.remote.moviedetail.MovieDetailResponse
-import com.backbase.assignment.ui.data.remote.movielist.PlayingNowResponse
 import com.backbase.assignment.ui.network.clientbuilder.BaseRepository
 import com.backbase.assignment.ui.network.model.Resource
 import com.backbase.assignment.ui.repo.MovieBoxRepo

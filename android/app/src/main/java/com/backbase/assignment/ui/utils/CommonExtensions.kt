@@ -14,9 +14,7 @@ import java.util.*
 fun Context.toast(message: CharSequence) =
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-fun View.ShowSnackBar(message: String) {
-    Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
-}
+
 fun convertDateFormat(date: String?): String {
     date?.let {
         val parser =  SimpleDateFormat("yyyy-MM-dd",Locale.getDefault())
@@ -40,13 +38,5 @@ fun customTimeFormat(time: String):String{
     val stringArray = time.split(":")
     return stringArray[0] +"h"+stringArray[1]
 }
-fun showAlert(context: Activity){
-    AlertDialog.Builder(context)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle("App Exit")
-        .setMessage("Are you sure you want to Exit?")
-        .setPositiveButton("Yes") { _, _ -> ActivityCompat.finishAffinity(context) }
-        .setNegativeButton("No", null)
-        .show()
-}
+
 

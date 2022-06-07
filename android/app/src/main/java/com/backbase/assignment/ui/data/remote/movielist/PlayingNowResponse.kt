@@ -1,7 +1,7 @@
 package com.backbase.assignment.ui.data.remote.movielist
 
 data class PlayingNowResponse(
-    val dates: Dates,
+    val dates: Dates?,
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,

@@ -1,7 +1,6 @@
 package com.backbase.assignment.ui.repo.moviedetail
 
 import com.backbase.assignment.ui.data.remote.moviedetail.MovieDetailResponse
-import com.backbase.assignment.ui.data.remote.movielist.PlayingNowResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

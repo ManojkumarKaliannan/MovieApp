@@ -40,15 +40,4 @@ fun ratingView(view: ShapeableImageView, count: Double?) {
 private fun getCount(count:Double): Long {
     return (((count / 10) * 100).toLong())
 }
-@BindingAdapter("customImageFromUrl")
-fun setImageFromUrl(imageView: ImageView, filePath: String?) {
-    val option: RequestOptions = RequestOptions()
-        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-        .placeholder(R.drawable.ic_no_image)
-        .fitCenter()
 
-    Glide.with(imageView.context)
-        .load(filePath)
-        .apply(option)
-        .into(imageView)
-}

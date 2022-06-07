@@ -8,19 +8,19 @@ class Resource<T> private constructor(val status: Status, @param:Nullable @field
     companion object {
 
         fun <T> success(data: T): Resource<T> {
-            return Resource<T>(Status.SUCCESS, data, null)
+            return Resource(Status.SUCCESS, data, null)
         }
 
         fun <T> error(msg: String, @Nullable data: T?): Resource<T> {
-            return Resource<T>(Status.ERROR, data, msg)
+            return Resource(Status.ERROR, data, msg)
         }
 
         fun <T> loading(@Nullable data: T): Resource<T> {
-            return Resource<T>(Status.LOADING, data, null)
+            return Resource(Status.LOADING, data, null)
         }
 
         fun <T> failure(msg: String, @Nullable data: T?): Resource<T> {
-            return Resource<T>(Status.FAILURE, data, msg)
+            return Resource(Status.FAILURE, data, msg)
         }
     }
 }

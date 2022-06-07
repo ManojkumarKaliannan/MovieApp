@@ -4,7 +4,6 @@ import android.app.Application
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.backbase.assignment.ui.data.remote.moviedetail.MovieDetailResponse
 import com.backbase.assignment.ui.data.remote.movielist.PlayingNowResponse
@@ -35,11 +34,7 @@ class DashboardViewModel(application: Application) :BaseViewModel<BaseNavigator>
     var movieTime=ObservableField("")
     var movieDate=ObservableField("")
     var progressBarVisibility=ObservableField(true)
-    private var mState: SavedStateHandle? = null
 
-    fun SavedStateViewModel(savedStateHandle: SavedStateHandle?) {
-        mState = savedStateHandle
-    }
     //getting playinglist response
    fun getPlayingNowResponse(mPageCount: Int) {
        viewModelScope.launch {
