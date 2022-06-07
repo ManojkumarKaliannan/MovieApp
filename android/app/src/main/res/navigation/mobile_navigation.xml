@@ -20,13 +20,16 @@
         <action
             android:id="@+id/action_navigation_most_popular_to_navigation_movie_detail"
             app:destination="@id/navigation_movie_detail"
-            app:popUpToInclusive="true"
             />
     </fragment>
     <fragment
         android:id="@+id/navigation_movie_detail"
         android:name="com.backbase.assignment.ui.ui.dashboard.moviedetail.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail" >
+        <action
+            android:id="@+id/action_navigation_movie_detail_to_navigation_most_popular"
+            app:destination="@id/navigation_most_popular" />
+    </fragment>
 
 </navigation>

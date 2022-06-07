@@ -2,7 +2,6 @@ package com.backbase.assignment.ui.ui.dashboard
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -67,17 +66,4 @@ class DashBoardActivity : BaseActivity<ActivityDashBoardBinding, DashboardViewMo
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun loadFragment(fragment: Fragment?): Boolean {
-
-        //switching fragment
-        if (fragment != null&&fragment.isAdded) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.nav_host_fragment_activity_dash_board, fragment)
-                .addToBackStack(fragment.toString())
-                .commit()
-            return true
-        }
-        return false
-    }
 }

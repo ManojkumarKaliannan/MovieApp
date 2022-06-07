@@ -2,6 +2,7 @@ package com.backbase.assignment.ui.ui.dashboard.moviedetail
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.backbase.assignment.BR
 import com.backbase.assignment.R
@@ -13,6 +14,7 @@ import com.backbase.assignment.ui.data.remote.moviedetail.Genre
 import com.backbase.assignment.ui.data.remote.moviedetail.SpokenLanguage
 import com.backbase.assignment.ui.network.model.Status
 import com.backbase.assignment.ui.ui.base.BaseFragment
+import com.backbase.assignment.ui.ui.base.BaseNavigator
 import com.backbase.assignment.ui.ui.dashboard.DashboardViewModel
 import com.backbase.assignment.ui.utils.convertDateFormat
 import com.backbase.assignment.ui.utils.convertHoursFormat
@@ -21,7 +23,7 @@ import org.koin.core.KoinComponent
 
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DashboardViewModel>(),
-    KoinComponent {
+    KoinComponent, BaseNavigator {
     private val movieBoxViewModel by sharedViewModel<DashboardViewModel>()
     private lateinit var adapterLanguage: BaseRecyclerViewAdapter<SpokenLanguage,LanguageItemBinding>
     private lateinit var adapterGenre: BaseRecyclerViewAdapter<Genre,GenresItemBinding>
@@ -35,6 +37,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DashboardVi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        movieBoxViewModel.setNavigator(this)
         setLanguageAdapter()
         setGenreAdapter()
         movieBoxViewModel.getMovieDetailResponse(movieBoxViewModel.selectedPosition.get()!!)
@@ -91,6 +94,17 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DashboardVi
         val manager = GridLayoutManager(context,4)
         viewDataBinding?.genresRcv?.layoutManager=manager
         viewDataBinding?.genresRcv?.adapter=adapterGenre
+    }
+
+    override fun onClickView(v: View?) {
+        when(v?.id){
+            R.id.close_image->{
+                NavHostFragment.findNavController(this).navigate(R.id.action_navigation_movie_detail_to_navigation_most_popular)
+            }
+        }
+    }
+
+    override fun goTo(clazz: Class<*>, mExtras: Bundle?) {
     }
 
 
