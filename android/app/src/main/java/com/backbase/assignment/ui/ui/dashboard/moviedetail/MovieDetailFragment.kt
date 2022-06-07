@@ -37,7 +37,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DashboardVi
         super.onViewCreated(view, savedInstanceState)
         setLanguageAdapter()
         setGenreAdapter()
-        movieBoxViewModel.getMostDetailResponse(movieBoxViewModel.selectedPosition.get()!!)
+        movieBoxViewModel.getMovieDetailResponse(movieBoxViewModel.selectedPosition.get()!!)
         observeResponse()
     }
 
@@ -48,6 +48,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding, DashboardVi
                 when(it1.status){
                     Status.SUCCESS->{
                         it.data?.let { it2->
+                            movieBoxViewModel.progressBarVisibility.set(false)
                             viewModel.let {it3->
                                 it3.posterPath.set(it2.poster_path)
                                 it3.movieDate.set(convertDateFormat(it2.release_date))

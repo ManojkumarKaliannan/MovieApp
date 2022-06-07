@@ -17,9 +17,14 @@ open class BaseRepository {
         return object : Callback<T> {
             override fun onFailure(call: Call<T>, t: Throwable) {
                 if (t is IOException)
-                    responseData.value = Resource.failure("Server time out", null)
-                else
+                    if(t is NoConnectivityException) {
+                        responseData.value = Resource.failure(t.message, null)
+                    }else{
+                        responseData.value = Resource.failure("Server time out", null)
+                    }
+                else{
                     responseData.value = Resource.failure(t.message!!, null)
+                }
             }
 
             override fun onResponse(

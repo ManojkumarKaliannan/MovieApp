@@ -2,7 +2,6 @@ package com.backbase.assignment.ui.ui.dashboard
 
 import android.app.Application
 import android.view.View
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,15 +13,12 @@ import com.backbase.assignment.ui.repo.playingnow.PlayingNowRepo
 import com.backbase.assignment.ui.repo.popular.MostPopularRepo
 import com.backbase.assignment.ui.ui.base.BaseNavigator
 import com.backbase.assignment.ui.ui.base.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
+import com.backbase.assignment.ui.utils.Singleton.APIKEY
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 class DashboardViewModel(application: Application) :BaseViewModel<BaseNavigator>(application),KoinComponent{
-    var networkStatus=ObservableBoolean(true)
     var playingNowResponse = MutableLiveData<Resource<PlayingNowResponse>>()
     var mostPopularResponse = MutableLiveData<Resource<PlayingNowResponse>>()
     var movieDetailResponse = MutableLiveData<Resource<MovieDetailResponse>>()
@@ -36,23 +32,28 @@ class DashboardViewModel(application: Application) :BaseViewModel<BaseNavigator>
     var posterPath=ObservableField("")
     var movieTime=ObservableField("")
     var movieDate=ObservableField("")
-    var movieID=ObservableField("")
+    var progressBarVisibility=ObservableField(true)
 
-   fun getPlayingNowResponse(){
+    //getting playinglist response
+   fun getPlayingNowResponse(mPageCount: Int) {
        viewModelScope.launch {
-           movieBoxRepo.getPlayingNow(1,"55957fcf3ba81b137f8fc01ac5a31fb5",playingNowResponse)
+           progressBarVisibility.set(true)
+           movieBoxRepo.getPlayingNow(mPageCount,APIKEY,playingNowResponse)
        }
-
     }
-    fun getMostPopularResponse(){
+    //getting popular movie list response
+    fun getMostPopularResponse(mPageCount: Int){
         viewModelScope.launch {
-            mostPopularRepo.getMostPopularResponse(1,"55957fcf3ba81b137f8fc01ac5a31fb5",mostPopularResponse)
+            progressBarVisibility.set(true)
+            mostPopularRepo.getMostPopularResponse(mPageCount,APIKEY,mostPopularResponse)
         }
 
     }
-    fun getMostDetailResponse(selectedPosition: Int) {
+    //getting movie detail response
+    fun getMovieDetailResponse(selectedPosition: Int) {
         viewModelScope.launch {
-            movieDetailRepo.getMovieDetailRepo(selectedPosition,"55957fcf3ba81b137f8fc01ac5a31fb5",movieDetailResponse)
+            progressBarVisibility.set(true)
+            movieDetailRepo.getMovieDetailRepo(selectedPosition,APIKEY,movieDetailResponse)
         }
     }
     //Handling click events

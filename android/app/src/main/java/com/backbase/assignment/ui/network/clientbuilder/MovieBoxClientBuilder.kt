@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 import okhttp3.*
 
 
-class MovieBoxClientBuilder(private val interceptor: ApiInterceptor) : KoinComponent {
+class MovieBoxClientBuilder(private val interceptor: ApiInterceptor,private val networkConnectionInterceptor: NetworkConnectionInterceptor) : KoinComponent {
 
     fun getRetrofit()= retrofit
 
@@ -38,7 +38,8 @@ class MovieBoxClientBuilder(private val interceptor: ApiInterceptor) : KoinCompo
             .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(interceptor)
+            .addInterceptor(networkConnectionInterceptor)
+        .addInterceptor(interceptor)
             .build()
     }
 

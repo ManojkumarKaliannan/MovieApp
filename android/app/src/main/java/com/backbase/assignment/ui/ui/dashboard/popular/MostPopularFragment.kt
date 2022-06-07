@@ -1,6 +1,7 @@
 package com.backbase.assignment.ui.ui.dashboard.popular
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,18 +26,26 @@ class MostPopularFragment : BaseFragment<FragmentMostPopularBinding, DashboardVi
     BaseNavigator {
     private val movieBoxViewModel by sharedViewModel<DashboardViewModel>()
     private lateinit var mAdapter: BaseRecyclerViewAdapter<Result, PopularItemBinding>
+    private var mPageCount: Int=1
+    private var totalPageCount: Int=1
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movieBoxViewModel.setNavigator(this)
+        mPageCount=1
         setPlayingNowAdapter()
-        movieBoxViewModel.getMostPopularResponse()
+        observeResponse()
+        movieBoxViewModel.getMostPopularResponse(mPageCount)
+    }
+
+    private fun observeResponse() {
         movieBoxViewModel.mostPopularResponse.observe(viewLifecycleOwner
         ) {
             it?.let { it1 ->
                 when(it1.status){
                     Status.SUCCESS->{
                         it.data?.let { it2->
-                            mAdapter.cleatDataSet()
+                            movieBoxViewModel.progressBarVisibility.set(false)
+                            totalPageCount=it2.total_pages
                             mAdapter.addDataSet(it2.results)
                             mAdapter.notifyItemChanged(0)
                         }
@@ -54,7 +63,9 @@ class MostPopularFragment : BaseFragment<FragmentMostPopularBinding, DashboardVi
             }
         }
     }
+
     private fun setPlayingNowAdapter() {
+        // setting up custome viewpager
         mAdapter = BaseRecyclerViewAdapter(
             R.layout.popular_item,
             BR.popularItem, ArrayList(),null)
@@ -79,6 +90,8 @@ class MostPopularFragment : BaseFragment<FragmentMostPopularBinding, DashboardVi
             )
             it.addItemDecoration(itemDecoration)
             it.adapter=mAdapter
+            mAdapter.cleatDataSet()
+
             it.registerOnPageChangeCallback(object : OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
@@ -86,11 +99,17 @@ class MostPopularFragment : BaseFragment<FragmentMostPopularBinding, DashboardVi
                     viewModel.title.set(mAdapter.getItems()[position].title)
                     viewModel.overview.set(mAdapter.getItems()[position].overview)
                     viewModel.voteAverage.set(mAdapter.getItems()[position].vote_average)
+                    //checking condition for pagination
+                    //checking if current position is last item of adapter list and  page count should not greater then total page count
+                    if(position+1==mAdapter.getItems().size &&
+                        totalPageCount>=mPageCount){
+                        mPageCount += 1
+                        movieBoxViewModel.getMostPopularResponse(mPageCount)
+                    }
                 }
 
             })
         }
-
     }
 
     override fun onDestroyView() {
@@ -114,7 +133,6 @@ class MostPopularFragment : BaseFragment<FragmentMostPopularBinding, DashboardVi
     }
 
     override fun goTo(clazz: Class<*>, mExtras: Bundle?) {
-        TODO("Not yet implemented")
     }
 
 }

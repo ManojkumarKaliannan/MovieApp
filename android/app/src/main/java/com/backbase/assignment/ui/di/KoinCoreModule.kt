@@ -2,6 +2,7 @@ package com.backbase.assignment.ui.di
 
 import com.backbase.assignment.ui.network.clientbuilder.ApiInterceptor
 import com.backbase.assignment.ui.network.clientbuilder.MovieBoxClientBuilder
+import com.backbase.assignment.ui.network.clientbuilder.NetworkConnectionInterceptor
 import com.backbase.assignment.ui.repo.MovieBoxRepo
 import com.backbase.assignment.ui.repo.moviedetail.MovieDetailRepo
 import com.backbase.assignment.ui.repo.playingnow.PlayingNowRepo
@@ -16,7 +17,8 @@ class KoinCoreModule {
 
     val networkModule= module {
         single<ApiInterceptor>()
-        single{MovieBoxClientBuilder(get())}
+        single<NetworkConnectionInterceptor>()
+        single{MovieBoxClientBuilder(get(),get())}
     }
 
     val apiModule= module {
