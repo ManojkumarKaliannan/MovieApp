@@ -41,6 +41,14 @@ Added animation while doing the scroll
 
 Architecture-> MVVM 
 
+Code Inspect->
+Lint issues resolved
+
+Gradle->
+Used latest version  in build gradle dependencies
+Updated Target sdk to 31
+Junit for unit test 
+
 
 
 
