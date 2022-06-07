@@ -1,12 +1,7 @@
 package com.backbase.assignment.ui.utils
 
-import android.app.Activity
 import android.content.Context
-import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
