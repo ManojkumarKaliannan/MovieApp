@@ -80,3 +80,6 @@ We expect you to follow this additional requirements and restrictions, as it wil
 	* iOS - 14.0 +
 10. Do not use any hybrid solutions, such as Reactive Native or Flutter.
 11. As a recommendation, we would like to see you using SwiftUI+Combine or Jetpack Compose.
+![image1](https://user-images.githubusercontent.com/30109439/179805164-90313dba-9888-4729-a233-5fec56383b31.png)
+
+
